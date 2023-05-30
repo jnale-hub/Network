@@ -1,0 +1,33 @@
+{% extends "network/layout.html" %}
+
+{% block body %}
+<div class="body col-md-6">
+<span class="navbar-brand">Edit Profile</span>
+
+    {% if message %}
+        <div>{{ message }}</div>
+    {% endif %}
+
+    <form action="{% url 'edit_profile' %}" method="post">
+        {% csrf_token %}
+        <div class="row">
+            <div class="form-group col-md-6 col-sm-12">
+                <input class="form-control" autofocus required type="text" name="first_name" placeholder="First Name">
+            </div>
+            <div class="form-group col-md-6 col-sm-12">
+                <input class="form-control" required type="text" name="last_name" placeholder="Last Name">
+            </div>
+        </div>
+        <div class="form-group">
+            <input class="form-control" type="text" name="username" placeholder="Username">
+        </div>
+        <div class="form-group">
+            <input type="url" class="form-control" name="profile_pic" placeholder="Profile Picture URL">
+        </div>
+        <div class="form-group">
+            <input class="form-control" type="email" name="email" placeholder="Email Address">
+        </div>
+        <input class="btn btn-primary" type="submit" value="Save">
+    </form>
+</div>
+{% endblock %}

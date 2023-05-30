@@ -1,0 +1,105 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>{% block title %}Social Network{% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="{% static 'network/styles.css' %}" rel="stylesheet">
+    <script src="{% static 'network/network.js' %}"></script>
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'network/favicon.ico' %}">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            
+            <nav class="col-md-3 col-lg-2 d-none d-md-block bg-light sidebar sticky-top">
+                <div class="sidebar-sticky">
+                    <ul class="nav flex-column d-flex align-items-center">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'index' %}"
+                                style="font-size: 27px; color: rgba(29,161,242,1.00);">Network</a>
+                        </li>
+                        {% if user.is_authenticated %}
+                        <img src="{{ user.picture }}" alt="{{ user.username }}'s Profile Picture" class="rounded-circle mb-2" style="width: 55px; height: 55px; object-fit: cover;">
+                        <li class="nav-item">
+                            <a class="nav-link text-center" href="{% url 'profile' user.username %}">
+                                <strong>{{ user.first_name }} {{ user.last_name }}</strong>
+                                <div class="small text-center">@{{ user.username }}</div>
+                            </a>
+                        </li>
+                        {% endif %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'index' %}">All Posts</a>
+                        </li>
+                        {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'following' %}">Following</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
+                        </li>
+                        {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'login' %}">Log In</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'register' %}">Register</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </nav>
+            
+
+            
+            {% block body %}
+            {% endblock %}
+            
+
+            <div class="col-sm-12 col-lg-3 col-md-12">
+                <div class="container mt-3 mx-2">
+                    <form method="get" action="{% url 'search_results' %}" class="mb-4">
+                        <div class="input-group mx-auto">
+                            <input type="text" name="q" class="form-control" placeholder="Search...">
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-primary">Search</button>
+                            </div>
+                        </div>
+                    </form>
+                    {% if query %}
+                    <h5>Search Results for "{{ query }}":</h5><hr>
+                        {% for post in posts %}
+                            <div class="my-2 border-bottom">
+                                <div class="text-sm">
+                                    <a href="{% url 'profile' post.author %}">
+                                        <img src="{{ post.author.picture }}" alt="{{ post.author }}'s Profile Picture" class="rounded-circle mr-3" style="width: 48px; height: 48px; object-fit: cover;">
+                                    </a>
+                                    <a class="text-dark" href="{% url 'profile' post.author %}">
+                                        <span class="font-weight-bold">{{ post.author.first_name }} {{ post.author.last_name }}</span>
+                                        <span class="text-muted">@{{ post.author }}</span>
+                                    </a> 
+                                    <span class="text-muted">· {{ post.date }}</span></div>
+                                
+                                <p class="my-2">
+                                <span id="content_{{ post.id }}">{{ post.content | safe }}</span>
+                            </div>
+                        {% empty %}
+                        <p>No results found.</p>
+                        {% endfor %}
+                    {% endif %}
+                    
+                </div>
+            </div>
+
+            
+
+        </div>
+    </div>
+</body>
+
+</html>

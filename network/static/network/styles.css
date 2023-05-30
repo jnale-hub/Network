@@ -1,0 +1,100 @@
+.body {
+  border-right: 1px solid #e2e2e2;
+  border-left: 1px solid #e2e2e2;
+}
+
+.edit, .delete{
+  font-size: small;
+}
+
+.sidebar {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  padding-left: 10px;
+}
+
+.sidebar-sticky {
+  position: sticky;
+  top: 0;
+  height: calc(100vh - 10px);
+  padding-top: .5rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.nav-link {
+  font-size: 19px;
+  font-weight: bold;
+  color: black;
+  transition-duration: 0.25s;
+  border-radius: 999px;
+  padding-right: 20px;
+  margin-bottom: 0.5rem;
+  display: inline-block;
+}
+
+.active {
+  color: rgba(29, 161, 242, 1.00);
+}
+
+.nav-link:hover {
+  color: rgba(29, 161, 242, 1.00);
+  background-color: rgba(29, 161, 242, 0.1);
+}
+
+
+.top-nav {
+  background-color: white;
+  border-bottom: 1px solid #e2e2e2;
+}
+
+.navbar-brand {
+  font-size: 19px;
+  font-weight: bolder;
+  color: black;
+}
+
+.navbar-brand:hover {
+  cursor: pointer;
+}
+
+.form-control:focus {
+  box-shadow: none;
+}
+
+.custom-file-input:focus~.custom-file-label {
+  border-color: #1da1f2;
+  box-shadow: 0 0 0 0.2rem rgba(29, 161, 242, 0.25);
+}
+
+
+.btn-primary {
+  background-color: #1da1f2;
+  border-color: #1da1f2;
+  font-weight: bold;
+}
+
+.btn-primary:hover {
+  background-color: #0c84c1;
+  border-color: #0c84c1;
+}
+
+.btn-primary:focus {
+  box-shadow: 0 0 0 0.2rem rgba(29, 161, 242, 0.5);
+}
+
+.btn-primary:active {
+  background-color: #0c5d8a;
+  border-color: #0c5d8a;
+}
+
+.btn-primary.rounded-pill {
+  border-radius: 30px;
+}
+
+
+.btn-primary.px-4 {
+  padding-left: 20px;
+  padding-right: 20px;
+}

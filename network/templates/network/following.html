@@ -1,0 +1,76 @@
+{% extends "network/layout.html" %}
+
+{% block body %}
+<div class="body col-md-9 col-lg-7 p-0">
+    <div class="top-nav navbar navbar-expand-md" style="position: sticky; top: 0;">
+        <span class="navbar-brand">Following</span>
+    </div>
+
+    {% for post in posts_page %}
+    <div class="tweet border-bottom py-3 px-5">
+        <div class="media">
+            <a href="{% url 'profile' post.author %}">
+                <img src="{{ post.author.picture }}" alt="." class="rounded-circle mr-3" style="width: 48px; height: 48px; object-fit: cover;">
+            </a>
+            <div class="media-body">
+                <div class="">
+                    <a class="text-dark" href="{% url 'profile' post.author %}">
+                        <span class="font-weight-bold">{{ post.author.first_name }} {{ post.author.last_name }}</span>
+                        <span class="text-muted">@{{ post.author }}</span>
+                    </a>
+                    <span class="text-muted">· {{ post.date }}</span>
+                    {% if user == post.author %}
+                    <a data-post-id="{{ post.id }}" class="edit text-muted">· Edit</a>
+                    {% endif %}
+                </div>
+    
+                <p class="my-2">
+                    <div id="content_{{ post.id }}">{{ post.content | safe }}</div>
+                </p>
+    
+                <div class="d-flex align-items-center justify-content-between">
+                    {% if user.is_authenticated %}
+                    <div class="d-flex align-items-center">
+                        <button class="btn btn-outline-primary rounded-pill mr-3"><i class="far fa-comment"></i>
+                            Comment</button>
+                        <button class="btn btn-outline-primary rounded-pill mr-3"><i class="fas fa-retweet"></i>
+                            Retweet</button>
+                        <a data-post-id="{{ post.id }}" class="like post-action">
+                            {% if user not in post.likes.all %}
+                            <button class="btn btn-outline-primary rounded-pill">
+                                <i class="far fa-heart"></i>
+                                <span>Like</span></a>
+                            </button>
+                            {% else %}
+                            <button class="btn btn-outline-primary rounded-pill">
+                                <i class="far fa-heart"></i> <span>Unlike</span></a>
+                            </button>
+                            {% endif %}
+                    </div>
+                    {% endif %}
+                    <div><span id="num-likes-{{ post.id }}" class="font-weight-bold">{{ post.likes.all.count }}</span> likes</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% empty %}
+    <div class="container-fluid my-3 mx-2">
+        <p>No post available.</p>
+    </div>
+    {% endfor %}
+
+    <nav>
+        <ul class="pagination d-flex justify-content-center mt-3">
+            {% if posts_page.has_previous %}
+            <li class="page-item"><a class="page-link" href="?page={{ posts_page.previous_page_number }}">Previous</a>
+            </li>
+            {% endif %}
+            {% if posts_page.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{ posts_page.next_page_number }}">Next</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+
+</div>
+{% endblock %}
