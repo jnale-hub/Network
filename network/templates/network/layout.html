@@ -8,6 +8,10 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
     <link href="{% static 'network/styles.css' %}" rel="stylesheet">
     <script src="{% static 'network/network.js' %}"></script>
     <link rel="shortcut icon" type="image/x-icon" href="{% static 'network/favicon.ico' %}">
@@ -54,6 +58,13 @@
                     </ul>
                 </div>
             </nav>
+
+            <button class="navbar-toggler d-block d-md-none" type="button" data-toggle="collapse" data-target=".sidebar-collapse" aria-controls="sidebarCollapse" aria-expanded="false" aria-label="Toggle sidebar">
+                <span class="navbar-toggler-icon">X
+                </span>
+            </button>
+
+
             
 
             
@@ -100,6 +111,17 @@
 
         </div>
     </div>
+
+    <script>
+        var sidebar = document.querySelector('.sidebar');
+        var sidebarCollapse = document.querySelector('.navbar-toggler');
+    
+        sidebarCollapse.addEventListener('click', function () {
+            sidebar.classList.toggle('active');
+        });
+    </script>
 </body>
+
+
 
 </html>

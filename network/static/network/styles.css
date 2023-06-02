@@ -3,7 +3,8 @@
   border-left: 1px solid #e2e2e2;
 }
 
-.edit, .delete{
+.edit,
+.delete {
   font-size: small;
 }
 
@@ -97,4 +98,49 @@
 .btn-primary.px-4 {
   padding-left: 20px;
   padding-right: 20px;
+}
+
+@media (max-width: 576px) {
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: 100vh;
+    z-index: 1;
+    transition: left 0.3s;
+  }
+
+  .sidebar.active {
+    left: 0;
+  }
+
+  .sidebar-sticky {
+    padding-top: 50px;
+  }
+
+  .sidebar .nav-link {
+    display: block;
+    padding: 10px;
+    text-align: center;
+  }
+
+  .sidebar .nav-item:first-child .nav-link {
+    padding-top: 20px;
+  }
+
+  .sidebar .nav-item:last-child .nav-link {
+    padding-bottom: 20px;
+  }
+
+  .navbar-toggler {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 2;
+  }
+
+  .sidebar.active~.navbar-toggler {
+    left: 260px;
+  }
 }
