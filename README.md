@@ -3,7 +3,7 @@ Social network website for making posts, following other users, liking posts, an
 
 ## Summary
 
-The aim of this project was to build a Twitter-like social network website using the Python Django framework. Users can view all posts, as well as search on the site. New posts can be created by users, and users can edit their existing post. There is also a 'random page' function that selects and displays a page of the encyclopedia at random.
+The aim of this project was to build a Twitter-like social network website using the Python Django framework. Users can view all posts, as well as search on the site. New posts can be created by users, and users can edit their existing post. Users can can like a post, follow a user, and edit their profile.
 
 <img src="network/network-home.png" alt="Screenshot of the project">
 <img src="network/network.png" alt="Screenshot of the project">
